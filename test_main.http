@@ -1,0 +1,31 @@
+# Test your FastAPI endpoints
+# Change x-api-key value according envirnoment setup.
+GET http://127.0.0.1:8000/
+Accept: application/json
+
+### Post Request: it will 403 no x-api-key header
+POST http://127.0.0.1:8000/scrape
+Content-Type: application/json
+
+{
+  "page_limit":2
+}
+
+### Post Request: it will save 48 result from website in json file
+POST http://127.0.0.1:8000/scrape
+Content-Type: application/json
+x-api-key: SECRET_KEY
+
+{
+  "page_limit":2
+}
+
+### Post Request: it will return 0 because previouly it saved all page 1 data. line:9
+POST http://127.0.0.1:8000/scrape
+Content-Type: application/json
+x-api-key: SECRET_KEY
+
+{
+  "page_limit":1
+}
+
